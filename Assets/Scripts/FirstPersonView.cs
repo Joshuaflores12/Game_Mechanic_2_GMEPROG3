@@ -29,13 +29,13 @@ public class FirstPersonView : MonoBehaviour
 
         mouseDelta *= sensitivity;
 
-        smoothedDelta = Vector2.Lerp(smoothedDelta, mouseDelta, 1f / smoothing);
+        smoothedDelta = Vector2.Lerp(smoothedDelta, mouseDelta, 1f / smoothing); // Camera Smoothing
 
         playerOrientation.x += mouseDelta.x;
         playerOrientation.y -= mouseDelta.y;
 
-        playerOrientation.x = Mathf.Repeat(playerOrientation.x + 180f, 360f) - 180f;
-        playerOrientation.y = Mathf.Clamp(playerOrientation.y, -30f, 30f);
+        playerOrientation.x = Mathf.Repeat(playerOrientation.x + 180f, 360f) - 180f; // Makes the player look around on the x axis
+        playerOrientation.y = Mathf.Clamp(playerOrientation.y, -30f, 30f);  // Makes the player look around on the y axis
 
         cameraHolder.rotation = Quaternion.Euler(new Vector3(playerOrientation.y, cameraHolder.rotation.eulerAngles.y, 0));
 

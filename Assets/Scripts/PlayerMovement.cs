@@ -24,10 +24,10 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Input Value" + value);
         if (value == Vector3.zero) 
         {
-        rb.velocity = new Vector3(0, rb.velocity.y,0);
+        rb.velocity = new Vector3(0, rb.velocity.y,0); // Reset Values upon moving on different direction
         }
-        Vector3 direction = new Vector3(value.x, 0, value.y);
-        Vector3 velocity = direction * movespeed * Time.deltaTime;
+        Vector3 direction = new Vector3(value.x, 0, value.y); // Player movement x side to side z front and back
+        Vector3 velocity = direction * movespeed * Time.deltaTime; //movement speed
         velocity.y = rb.velocity.y;
         rb.AddRelativeForce(velocity);
     }

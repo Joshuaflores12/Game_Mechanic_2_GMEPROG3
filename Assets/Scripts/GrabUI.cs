@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class GrabUI : MonoBehaviour
 {
-    private InputManager inputManager;
+    private InputManager inputManager; // calls input manager Class
 
-    public float maxDistance = 3f;
+    public float maxDistance = 100f;
     public LayerMask grabbableLayer;
 
     private TextMeshProUGUI grabbableText;
@@ -25,10 +25,10 @@ public class GrabUI : MonoBehaviour
 
     private void UpdateGrabbableText()
     {
-        Ray ray = inputManager.GetCrosshairPoint();
+        Ray ray = inputManager.GetCrosshairPoint(); // Gets Camera ray point cursor, upon hit shows text
         RaycastHit hit;
 
-        bool isGrabbable = Physics.Raycast(ray, out hit, maxDistance, grabbableLayer);
+        bool isGrabbable = Physics.Raycast(ray, out hit, maxDistance, grabbableLayer); // Calls the layer that is set to the object to be grabbed
 
         if (isGrabbable)
         {
