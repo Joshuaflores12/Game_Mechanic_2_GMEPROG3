@@ -834,9 +834,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Recreate the Game Mechanics #2 (UI Showing when Hover with Grab
-    and Drop)
-  metroPackageVersion: 
+  metroPackageName: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -845,7 +844,7 @@ PlayerSettings:
   metroApplicationDescription: Recreate the Game Mechanics #2 (UI Showing when Hover
     with Grab and Drop)
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Recreate the Game Mechanics #2 (UI Showi
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

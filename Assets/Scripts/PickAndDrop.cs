@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PickAndDrop : MonoBehaviour
@@ -8,7 +7,7 @@ public class PickAndDrop : MonoBehaviour
     private InputManager inputManager;
     [SerializeField] private Transform objectHolder;
     [SerializeField] private Transform grabbedObject;
-    [SerializeField] private float objectmovespeed;
+    [SerializeField] private float objectMoveSpeed;
     [SerializeField] private float throwForce;
     private void Start()
     {
@@ -27,31 +26,32 @@ public class PickAndDrop : MonoBehaviour
         float maxDistance = 100f;
 
         if (!inputManager.IsPlayerGrabbing())
-        {   ReleaseObject();
+        {
+            ReleaseObject();
             return;
         }
 
         if (Physics.Raycast(ray, out hit)
-            && hit.transform.CompareTag("Object") // If the item tagged as "Object" gets the distance between the cursor and the object
+            && hit.transform.CompareTag("Object")
             && Vector3.Distance(transform.position, hit.point) <= maxDistance
             && grabbedObject == null)
         {
-            grabbedObject = hit.transform; // Upon hit the item will be child to the parent Object Holder, the players hands
+            grabbedObject = hit.transform;
             grabbedObject.parent = objectHolder;
         }
 
-        if (grabbedObject != null) // If the object is not yet grabbed it will move towards the object holder
+        if (grabbedObject != null)
         {
             Vector3 targetPosition = objectHolder.position;
-            grabbedObject.position = Vector3.MoveTowards(grabbedObject.position, targetPosition, objectmovespeed * Time.deltaTime);
-            if (Vector3.Distance(grabbedObject.position, targetPosition) <=1)
+            grabbedObject.position = Vector3.MoveTowards(grabbedObject.position, targetPosition, objectMoveSpeed * Time.deltaTime);
+            if (Vector3.Distance(grabbedObject.position, targetPosition) <= 1)
             {
                 ThrowObject();
             }
-        }     
+        }
     }
 
-    private void ReleaseObject() //Upon releasing the object the values will be null/empty
+    private void ReleaseObject()
     {
         if (grabbedObject != null)
         {
@@ -59,21 +59,15 @@ public class PickAndDrop : MonoBehaviour
             grabbedObject = null;
         }
     }
+
     private void ThrowObject()
     {
         if (grabbedObject != null)
         {
-            
-            Vector3 throwDirection = (objectHolder.forward); //Object will be thrown forward upon reaching the object holder
-
-            
-            Vector3 throwVelocity = throwDirection * throwForce; //Force value
-
-            
-            Rigidbody grabbedObjectRb = grabbedObject.GetComponent<Rigidbody>(); //Get the rb of the Item to throw
+            Vector3 throwDirection = objectHolder.forward;
+            Vector3 throwVelocity = throwDirection * throwForce;
+            Rigidbody grabbedObjectRb = grabbedObject.GetComponent<Rigidbody>();
             grabbedObjectRb.velocity = throwVelocity;
-
-            
             ReleaseObject();
         }
     }
